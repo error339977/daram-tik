@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دیڤان فیلم - ماڵپەری فیلم و زنجیرەی کوردی</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+        
+        :root {
+            --primary: #8e44ad;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --dark: #1a1a2e;
+            --darker: #0d0d1a;
+            --light: #ecf0f1;
+            --gold: #f1c40f;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        body {
+            background: var(--darker);
+            color: var(--light);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(142, 68, 173, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(52, 152, 219, 0.15) 0%, transparent 20%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid var(--primary);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo i {
+            font-size: 32px;
+            color: var(--primary);
+            filter: drop-shadow(0 0 5px rgba(142, 68, 173, 0.7));
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        nav a:hover, nav a.active {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(142, 68, 173, 0.2) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 70%, rgba(52, 152, 219, 0.2) 0%, transparent 40%),
+                url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            filter: blur(2px) brightness(0.4);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 650px;
+            z-index: 2;
+            background: rgba(26, 26, 46, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero h1 span {
+            color: var(--gold);
+            display: block;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            color: #ddd;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Search Section */
+        .search-section {
+            padding: 40px 5%;
+            text-align: center;
+            background: rgba(26, 26, 46, 0.7);
+            margin: 40px 5%;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+        
+        .search-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+            height: 70px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 0 30px;
+            font-size: 18px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid var(--primary);
+            border-right: none;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-box button {
+            width: 150px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .search-box button:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+        
+        /* Categories */
+        .categories {
+            padding: 60px 5%;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--light);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 5px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .category-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .category-content {
+            padding: 25px;
+        }
+        
+        .category-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .category-content p {
+            color: #bdc3c7;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .category-count {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gradient);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Featured Movies */
+        .featured-movies {
+            padding: 60px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-movies::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(142, 68, 173, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .movie-slider {
+            display: flex;
+            gap: 30px;
+            padding: 30px 0;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+        
+        .movie-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .movie-slider::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .movie-slider::-webkit-scrollbar-thumb {
+            background: var(--gradient);
+            border-radius: 10px;
+        }
+        
+        .movie-card {
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+        
+        .movie-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--secondary);
+        }
+        
+        .movie-poster {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .movie-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .movie-info {
+            padding: 20px;
+        }
+        
+        .movie-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #bdc3c7;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .rating {
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        .movie-desc {
+            color: #bdc3c7;
+            line-height: 1.6;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 80px 5%;
+            background: rgba(26, 26, 46, 0.7);
+            margin: 60px 0;
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-item i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        .stat-item p {
+            color: #bdc3c7;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(13, 13, 26, 0.95);
+            padding: 60px 5% 30px;
+            margin-top: 80px;
+            border-top: 2px solid var(--primary);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .footer-column p {
+            color: #bdc3c7;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: 0.3s;
+            display: block;
+            padding: 8px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+            transform: translateX(-5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: 0.3s;
+            font-size: 1.3rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 1.1rem;
+        }
+        
+        .developer {
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px;
+            }
+            
+            .hero {
+                height: auto;
+                padding: 100px 5%;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+                padding: 30px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .search-box {
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .movie-card {
+                min-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-film"></i>
+            <h1>دیڤان فیلم</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-home"></i> سەرەتا</a></li>
+                <li><a href="#"><i class="fas fa-video"></i> فیلمەکان</a></li>
+                <li><a href="#"><i class="fas fa-tv"></i> زنجیرەکان</a></li>
+                <li><a href="#"><i class="fas fa-category"></i> پۆلەکان</a></li>
+                <li><a href="#"><i class="fas fa-newspaper"></i> هەواڵەکان</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> دەربارە</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>کۆی گەورەی <span>فیلم و زنجیرەی کوردی</span></h1>
+            <p>بەشداری لە گەورەترین کتێبخانەی فیلم و زنجیرەی کوردیدا بکە. هەزاران فیلم و زنجیرەی کوردی لە هەموو جۆرەکانی سینەمای کوردی بە کوالێتی HD ببینە</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> بینینی ئێستا</a>
+                <a href="#" class="btn btn-secondary"><i class="fas fa-crown"></i> ئەندامی پریمیوم</a>
+                <a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i> زانیاری زیاتر</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <h2>گەڕان بەناوی فیلم، دەرهێنەر، ئەکتەر...</h2>
+        <div class="search-box">
+            <input type="text" placeholder="ناوی فیلم یان زنجیرە...">
+            <button><i class="fas fa-search"></i> گەڕان</button>
+        </div>
+        <div class="quick-tags" style="margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <span style="background: rgba(142, 68, 173, 0.2); color: #ddd; padding: 8px 20px; border-radius: 30px; cursor: pointer;">ئەکشن</span>
+            <span style="background: rgba(52, 152, 219, 0.2); color: #ddd; padding: 8px 20px; border-radius: 30px; cursor: pointer;">دراما</span>
+            <span style="background: rgba(231, 76, 60, 0.2); color: #ddd; padding: 8px 20px; border-radius: 30px; cursor: pointer;">کۆمێدی</span>
+            <span style="background: rgba(241, 196, 15, 0.2); color: #ddd; padding: 8px 20px; border-radius: 30px; cursor: pointer;">مێژوویی</span>
+            <span style="background: rgba(46, 204, 113, 0.2); color: #ddd; padding: 8px 20px; border-radius: 30px; cursor: pointer;">سەرکێشی</span>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2 class="section-title">پۆلەکانی فیلم و زنجیرە</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <span class="category-count">١٤٥ فیلم</span>
+                </div>
+                <div class="category-content">
+                    <h3>فیلمی ئەکشن</h3>
+                    <p>فیلمە ئەکشنییە کوردییەکان بە کوالێتییەکی بەرز و دەرهێنانی پڕ لە جووڵە و سەرکێشی</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1512070679279-8988d32161be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <span class="category-count">٩٨ فیلم</span>
+                </div>
+                <div class="category-content">
+                    <h3>دراما</h3>
+                    <p>باشترین فیلمە دراماییەکانی سینەمای کوردی کە هەستەکانت بەرەو سەرەوە دەبات</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <span class="category-count">٦٣ فیلم</span>
+                </div>
+                <div class="category-content">
+                    <h3>مێژوویی</h3>
+                    <p>فیلمە مێژووییەکانی کورد لە هەموو سەردەمێک کە مێژووی نەتەوەکەمان نیشان دەدەن</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1543536448-d209d2d13a1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <span class="category-count">١٢٠ فیلم</span>
+                </div>
+                <div class="category-content">
+                    <h3>کۆمێدی</h3>
+                    <p>پێکەنینەو خۆشی لە فیلمە کۆمێدییە کوردییەکان کە هەموو کێشەکانت لەبیر دەکەن</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Movies -->
+    <section class="featured-movies">
+        <h2 class="section-title">فیلمە پێشکەشکراوەکان</h2>
+        <div class="movie-slider">
+            <div class="movie-card">
+                <div class="movie-poster" style="background-image: url('https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="movie-badge">نوێ</span>
+                </div>
+                <div class="movie-info">
+                    <h3>کەشتییەکە</h3>
+                    <div class="movie-meta">
+                        <span>٢٠٢٣</span>
+                        <span class="rating"><i class="fas fa-star"></i> ٨.٢</span>
+                    </div>
+                    <p class="movie-desc">درامایەکی هەستبزوێن لەسەر کۆچبەرانی کورد کە هەوڵی گەیشتن بە ئەورووپا دەدەن</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster" style="background-image: url('https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="movie-badge">پریمیوم</span>
+                </div>
+                <div class="movie-info">
+                    <h3>هەورەکانی سپی</h3>
+                    <div class="movie-meta">
+                        <span>٢٠٢٢</span>
+                        <span class="rating"><i class="fas fa-star"></i> ٧.٩</span>
+                    </div>
+                    <p class="movie-desc">چیرۆکێکی خەیاڵی سەرکێشی لە شاخەکانی کوردستان و شەڕی خراپ و چاک</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster" style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="movie-badge">ڕەسەن</span>
+                </div>
+                <div class="movie-info">
+                    <h3>گەڕەک</h3>
+                    <div class="movie-meta">
+                        <span>٢٠٢١</span>
+                        <span class="rating"><i class="fas fa-star"></i> ٨.٥</span>
+                    </div>
+                    <p class="movie-desc">ژیانی خەڵکی گەڕەکێکی کوردی لە شاری هەولێر و پێکدادانی کەلتوورەکان</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster" style="background-image: url('https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="movie-badge">کلاسیک</span>
+                </div>
+                <div class="movie-info">
+                    <h3>ڕۆژانی سەرزەمین</h3>
+                    <div class="movie-meta">
+                        <span>٢٠٢٠</span>
+                        <span class="rating"><i class="fas fa-star"></i> ٩.٠</span>
+                    </div>
+                    <p class="movie-desc">چیرۆکێکی مێژوویی لە شەڕی کورد و ململانێی نیشتمانی</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-poster" style="background-image: url('https://images.unsplash.com/photo-1540224871915-bc8ffb782bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <span class="movie-badge">ڕەسەن</span>
+                </div>
+                <div class="movie-info">
+                    <h3>گەشتێکی درێژ</h3>
+                    <div class="movie-meta">
+                        <span>٢٠١٩</span>
+                        <span class="rating"><i class="fas fa-star"></i> ٧.٧</span>
+                    </div>
+                    <p class="movie-desc">چیرۆکی سەرکێشی لە ڕێگای کوردستان و دۆزینەوە سەرسوڕهێنەرەکانی</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-item">
+            <i class="fas fa-film"></i>
+            <h3>١٢٥٠+</h3>
+            <p>فیلمی کوردی</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-tv"></i>
+            <h3>٣٥٠+</h3>
+            <p>زنجیرەی کوردی</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-user"></i>
+            <h3>٥٠٠٬٠٠٠+</h3>
+            <p>بەکارهێنەری چالاک</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-play-circle"></i>
+            <h3>١٠٬٠٠٠٬٠٠٠+</h3>
+            <p>بینینی ساڵانە</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>دەربارەی دیڤان فیلم</h3>
+                <p>دیڤان فیلم ماڵپەڕێکی تایبەتە بە فیلم و زنجیرەی کوردی. ئێمە هەوڵدەدەین باشترین فیلم و زنجیرە کوردییەکان لە شوێنێک کۆبکەینەوە و بە خاوەن زمانی شیرین پێشکەشی هاوڵاتیان بکەین.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>پەیوەندیەکان</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-phone"></i> ٠٧٥٠ ١٢٣ ٤٥٦٧</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> info@diwanfilm.com</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> هەولێر، کوردستان</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> پشتگیری تەکنیکی</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>بەستەرە خێراکان</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> سەرەتا</a></li>
+                    <li><a href="#"><i class="fas fa-video"></i> فیلمەکان</a></li>
+                    <li><a href="#"><i class="fas fa-tv"></i> زنجیرەکان</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> هەواڵەکان</a></li>
+                    <li><a href="#"><i class="fas fa-crown"></i> ئەندامی پریمیوم</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© ٢٠٢٣ دیڤان فیلم - هەموو مافەکان پارێزراوە. دروستکراوە لەلایەن <span class="developer">دیڤان</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search box focus effect
+            const searchInput = document.querySelector('.search-box input');
+            const searchButton = document.querySelector('.search-box button');
+            
+            searchInput.addEventListener('focus', function() {
+                searchButton.style.boxShadow = '0 0 20px rgba(142, 68, 173, 0.8)';
+            });
+            
+            searchInput.addEventListener('blur', function() {
+                searchButton.style.boxShadow = 'none';
+            });
+            
+            // Movie card hover effect enhancement
+            const movieCards = document.querySelectorAll('.movie-card');
+            
+            movieCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+            
+            // Auto-scroll for movie slider
+            const movieSlider = document.querySelector('.movie-slider');
+            let scrollAmount = 0;
+            let scrollTimer;
+            
+            function autoScroll() {
+                if (scrollAmount < movieSlider.scrollWidth - movieSlider.clientWidth) {
+                    scrollAmount += 1;
+                    movieSlider.scrollLeft = scrollAmount;
+                } else {
+                    scrollAmount = 0;
+                    movieSlider.scrollLeft = 0;
+                }
+                scrollTimer = setTimeout(autoScroll, 30);
+            }
+            
+            movieSlider.addEventListener('mouseenter', function() {
+                clearTimeout(scrollTimer);
+            });
+            
+            movieSlider.addEventListener('mouseleave', function() {
+                autoScroll();
+            });
+            
+            autoScroll();
+            
+            // Animation on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements
+            document.querySelectorAll('.category-card, .stat-item').forEach(item => {
+                item.style.opacity = '0';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
